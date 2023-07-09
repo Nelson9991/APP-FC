@@ -29,6 +29,16 @@ public class ListaProductosAgg {
 
     }
 
+    // isEmpty
+    public boolean isEmpty() {
+        return lista.isEmpty();
+    }
+
+    // Remove last product
+    public void removeLast() {
+        lista.remove(lista.size()-1);
+    }
+
     public int subtotalRecursi  () {
         return subtotalRecursi (lista.size()-1);
     }

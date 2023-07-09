@@ -300,6 +300,8 @@ public class Ventana {
     private JTextField txtDireccionRT;
     private JTextField txtDireccionEA;
     private JTextField txtDireccionRA;
+    private JButton txtRmAgua;
+    private JButton txtRmSeco;
     private JCheckBox ckMISMO;
     private JLabel lblFoto;
     private JList lstListar;
@@ -1716,6 +1718,60 @@ public class Ventana {
             public void actionPerformed(ActionEvent e) {
                 tbtActualizar.remove(jpVerStatus);
                 tbtActualizar.add("SOLICITAR SERVICIO", jpSoliServ);
+            }
+        });
+        txtRmSeco.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        txtRmAgua.addComponentListener(new ComponentAdapter() {
+        });
+        txtRmAgua.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Quitar producto de la lista
+
+                if (listaProd.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "No hay productos en la lista");
+                }else {
+                    listaProd.removeLast(); //solo añade el nuevo
+                }
+
+                txtproduSeco.setText(listaProd.toString());
+                //calculo valores Subtotal y Total
+                double SUBTOTAL;
+                double envio=1.5;
+                double TOTAL;
+                SUBTOTAL= listaProd.subtotalRecursi();
+                TOTAL=SUBTOTAL+envio;
+                lblSUBTSECO.setText(String.valueOf(SUBTOTAL));
+                lblEnviSECO.setText(String.valueOf(envio));
+                lblTOTALSECO.setText(String.valueOf(TOTAL));
+            }
+        });
+        txtRmSeco.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Quitar producto de la lista
+
+                if (listaProd.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "No hay productos en la lista");
+                }else {
+                    listaProd.removeLast(); //solo añade el nuevo
+                }
+
+                txtproduSeco.setText(listaProd.toString());
+                //calculo valores Subtotal y Total
+                double SUBTOTAL;
+                double envio=1.5;
+                double TOTAL;
+                SUBTOTAL= listaProd.subtotalRecursi();
+                TOTAL=SUBTOTAL+envio;
+                lblSUBTSECO.setText(String.valueOf(SUBTOTAL));
+                lblEnviSECO.setText(String.valueOf(envio));
+                lblTOTALSECO.setText(String.valueOf(TOTAL));
             }
         });
     }
