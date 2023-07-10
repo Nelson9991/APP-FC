@@ -10,6 +10,8 @@ public class Ventana {
     Lista listaClientes=new Lista();
     Lista listaAdministradores=new Lista();
     ListaTarjetas pepe = new ListaTarjetas();
+    Grafo grafoResenas = new Grafo();
+    ListaResenas listaResenas = new ListaResenas();
     DefaultListModel<Usuario> modeloLista1 = new DefaultListModel<>();
     DefaultListModel<Usuario> modeloLista2 = new DefaultListModel<>();
     ListaTransferidos coco = new ListaTransferidos();
@@ -333,7 +335,31 @@ public class Ventana {
     private JButton btnBuscarArrClient;
     private JButton btnCancelarArrClient;
     private JTextArea txtBuscarArrClient;
-    private JTabbedPane tabbedPane1;
+    private JPanel jpReseñas;
+    private JSpinner spEstrella;
+    private JTextField txtComentario;
+    private JButton REGISTRARRESEÑAButton;
+    private JButton REGRESARButton10;
+    private JButton VERRESEÑASButton;
+    private JTextArea txtVerReseña;
+    private JPanel jpVerReseña;
+    private JButton VERRESEÑASButton1;
+    private JButton REGRESARButton9;
+    private JLabel lblEntregaUBI;
+    private JLabel lblRecepcionUBI;
+    private JTextField txtnewUbiEntrega;
+    private JTextField txtNewUbiRecep;
+    private JButton ACTUALIZARButton;
+    private JButton REGRESARButton11;
+    private JPanel jpUbicaciones;
+    private JButton ubicacionesButton;
+    private JComboBox cboStatusSeco;
+    private JButton actualizarButton1;
+    private JComboBox cboStatusTint;
+    private JButton actualizarButton2;
+    private JComboBox cboStatusArr;
+    private JButton actualizarButton3;
+    private JComboBox cboOrdenStatus;
     private JTabbedPane tabbedPane2;
     private JLabel lblCedulaCancelarOrden;
     private JCheckBox ckMISMO;
@@ -342,6 +368,8 @@ public class Ventana {
 
     public Ventana() {
         SpinnerNumberModel model = new SpinnerNumberModel(1, 1, 50, 1);
+        SpinnerNumberModel resenaModel = new SpinnerNumberModel(1,1,5,1);
+        spEstrella.setModel(resenaModel);
         spCantidad.setModel(model);
         spCantSeco.setModel(model);
         tbtActualizar.remove(JpBuscarUsuAd);
@@ -376,11 +404,11 @@ public class Ventana {
         tbtActualizar.remove(jpTarjetaCredi);
         tbtActualizar.remove(jpNuevaTarj);
         tbtActualizar.remove(jpVerStatus);
+        tbtActualizar.remove(jpReseñas);
+        tbtActualizar.remove(jpVerReseña);
+        tbtActualizar.remove(jpUbicaciones);
         tbtAgSec.remove(jAgua);
         tbtAgSec.remove(jSeco);
-
-
-
 
 
     crearUsuarioButton.addActionListener(new ActionListener() {
@@ -1679,60 +1707,58 @@ public class Ventana {
             }
         });
 
-        buscarOrdenesButton.addActionListener(new
-                                                      ActionListener() {
+        buscarOrdenesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(ordenes.tamano()>0){
-                    String cedula = lblStatuCI.getText();
-                    numOrden = 1;
-                    Orden status = ordenes.buscarOrden(cedula, numOrden);
-                    String ver = status.toStringStatus();
-                    txtStatus.setText(ver);
-                }else if(ordenSeco.tamano()>0){
-                    String cedula = lblStatuCI.getText();
-                    numOrden = 1;
-                    Orden status = ordenSeco.buscarOrdenSECO(cedula, numOrden);
-                    String ver = status.toStringStatus();
-                    txtStatus.setText(ver);
-                }else if (ordenerTNT.tamano()>0){
-                    String cedula = lblStatuCI.getText();
-                    numOrden = 1;
-                    OrdenTint status = ordenerTNT.buscarOrden(cedula, numOrden);
-                    String ver = status.toStringStatus();
-                    txtStatus.setText(ver);
-                }else if(ordenesArgg.tamano()>0){
-                    String cedula = lblStatuCI.getText();
-                    numOrden = 1;
-                    OrdenArreglo status = ordenesArgg.buscarOrden(cedula, numOrden);
-                    String ver = status.toStringStatus();
-                    txtStatus.setText(ver);
-                }else JOptionPane.showMessageDialog(null,"No ha solicitado ningun servicio");
+                numOrden=1;
+                if(cboOrdenStatus.getSelectedItem().toString().compareToIgnoreCase("Lavado en agua")==0){
+                    if(ordenes.tamano()!=0){
+                        Orden orden = ordenes.buscarOrden(lblStatuCI.getText(), numOrden);
+                        txtStatus.setText(orden.toStringStatus());
+                    }else JOptionPane.showMessageDialog(null, "No hay ordenes registradas");
+                }else if (cboOrdenStatus.getSelectedItem().toString().compareToIgnoreCase("Lavado en seco")==0){
+                    if(ordenSeco.tamano()!=0){
+                        Orden orden = ordenSeco.buscarOrdenSECO(lblStatuCI.getText(),numOrden);
+                        txtStatus.setText(orden.toStringStatus());
+                    }else JOptionPane.showMessageDialog(null, "No hay ordenes registradas");
+                }else if (cboOrdenStatus.getSelectedItem().toString().compareToIgnoreCase("Tinturado")==0){
+                    if(ordenerTNT.tamano()!=0){
+                        OrdenTint orden = ordenerTNT.buscarOrden(lblStatuCI.getText(), numOrden);
+                        txtStatus.setText(orden.toStringStatus());
+                    }else JOptionPane.showMessageDialog(null, "No hay ordenes registradas");
+                }else if (cboOrdenStatus.getSelectedItem().toString().compareToIgnoreCase("Arreglo")==0){
+                    if(ordenesArgg.tamano()!=0){
+                        OrdenArreglo orden = ordenesArgg.buscarOrden(lblStatuCI.getText(), numOrden);
+                        txtStatus.setText(orden.toStringStatus());
+                    }else JOptionPane.showMessageDialog(null, "No hay ordenes registradas");
+                }
             }
         });
         siguienteOrdenButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (numOrden<=ordenes.tamano()+1){
-                    String cedula = lblStatuCI.getText();
-                    numOrden=numOrden+1;
-                    txtStatus.setText(ordenes.buscarOrden(cedula, numOrden).toStringStatus());
-                }else if(numOrden<=ordenSeco.tamano()+1){
-                    String cedula = lblStatuCI.getText();
-                    numOrden=1;
-                    txtStatus.setText(ordenSeco.buscarOrdenSECO(cedula, numOrden).toStringStatus());
-                    numOrden=numOrden+1;
-                }else if(numOrden<=ordenerTNT.tamano()+1){
-                    String cedula = lblStatuCI.getText();
-                    numOrden=1;
-                    txtStatus.setText(ordenerTNT.buscarOrden(cedula, numOrden).toStringStatus());
-                    numOrden=numOrden+1;
-                }else if(numOrden<=ordenesArgg.tamano()+1){
-                    String cedula = lblStatuCI.getText();
-                    numOrden=1;
-                    txtStatus.setText(ordenesArgg.buscarOrden(cedula, numOrden).toString());
-                    numOrden=numOrden+1;
-                }else JOptionPane.showMessageDialog(null, "No existen más ordenes");
+                numOrden=numOrden+1;
+                if(cboOrdenStatus.getSelectedItem().toString().compareToIgnoreCase("Lavado en agua")==0){
+                    if(numOrden<=ordenes.tamano()){
+                        Orden orden = ordenes.buscarOrden(lblStatuCI.getText(), numOrden);
+                        txtStatus.setText(orden.toStringStatus());
+                    }else JOptionPane.showMessageDialog(null, "No hay más ordenes registradas");
+                }else if (cboOrdenStatus.getSelectedItem().toString().compareToIgnoreCase("Lavado en seco")==0){
+                    if(numOrden<=ordenSeco.tamano()){
+                        Orden orden = ordenSeco.buscarOrdenSECO(lblStatuCI.getText(),numOrden);
+                        txtStatus.setText(orden.toStringStatus());
+                    }else JOptionPane.showMessageDialog(null, "No hay más ordenes registradas");
+                }else if (cboOrdenStatus.getSelectedItem().toString().compareToIgnoreCase("Tinturado")==0){
+                    if(numOrden<=ordenerTNT.tamano()){
+                        OrdenTint orden = ordenerTNT.buscarOrden(lblStatuCI.getText(), numOrden);
+                        txtStatus.setText(orden.toStringStatus());
+                    }else JOptionPane.showMessageDialog(null, "No hay más ordenes registradas");
+                }else if (cboOrdenStatus.getSelectedItem().toString().compareToIgnoreCase("Arreglo")==0){
+                    if(numOrden<=ordenesArgg.tamano()){
+                        OrdenArreglo orden = ordenesArgg.buscarOrden(lblStatuCI.getText(), numOrden);
+                        txtStatus.setText(orden.toStringStatus());
+                    }else JOptionPane.showMessageDialog(null, "No hay más ordenes registradas");
+                }
             }
         });
         UDStatus.addActionListener(new ActionListener() {
@@ -2097,6 +2123,153 @@ public class Ventana {
                 tbtActualizar.add("MENU PRINCIPAL", jpMenuPrincipa);
             }
         });
+        REGISTRARRESEÑAButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String desc = txtComentario.getText();
+                int valor = (int) spEstrella.getValue();
+                Resena resena = new Resena(valor,desc);
+                listaResenas.agregarResena(resena);
+                grafoResenas.agregarResena(resena); //agrega la resena al grafo
+                JOptionPane.showMessageDialog(null,"TU RESEÑA SE HA GUARDADO EXITOSAMENTE");
+                txtComentario.setText("");
+                if (grafoResenas.size() <= 1) {
+                    return;
+                } else{
+                    for (Resena item : listaResenas.getListaResenas()) {
+                        grafoResenas.agregarConexion(resena, item);
+                    }
+                }
+            }
+        });
+        btnCalificarServi.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tbtActualizar.remove(jpMenuPrincipa);
+                tbtActualizar.add("CALIFICA NUESTRO SERVICIO", jpReseñas);
+            }
+        });
+        REGRESARButton10.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tbtActualizar.remove(jpReseñas);
+                tbtActualizar.add("MENU PRINCIPAL", jpMenuPrincipa);
+            }
+        });
+        VERRESEÑASButton1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tbtActualizar.remove(jpMenuAdmin);
+                tbtActualizar.add("VER RESEÑAS", jpVerReseña);
+            }
+        });
+        REGRESARButton9.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tbtActualizar.remove(jpVerReseña);
+                tbtActualizar.add("MENU ADMINISTRADOR", jpMenuAdmin);
+            }
+        });
+        VERRESEÑASButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                List<Resena> resenasOrdenadas = grafoResenas.consultarResenasOrdenadas();
+
+                // Presentar la lista.
+                StringBuilder sb = new StringBuilder();
+                for (Resena item : resenasOrdenadas) {
+                    sb.append(item.toString());
+                    sb.append("\n");
+                }
+                txtVerReseña.setText(sb.toString());
+            }
+        });
+        ACTUALIZARButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String newEntrega = txtnewUbiEntrega.getText();
+                String newRecep = txtNewUbiRecep.getText();
+                String ced = lblCedulaMiperfil.getText();
+                Usuario usuario = listaClientes.buscarPorCedula(ced);
+                if (newEntrega.isEmpty() && newRecep.isEmpty()){
+                    JOptionPane.showMessageDialog(null,"Ingrese las nuevas direcciones");
+                } else {
+                    if (newRecep.isEmpty()){
+                        usuario.setRecepcion(usuario.getRecepcion());
+                    } else {
+                        usuario.setRecepcion(newRecep);
+                        JOptionPane.showMessageDialog(null, "Su ubicacion RECEPCION se a cambiado con exito");
+                        lblRecepcionUBI.setText(usuario.getRecepcion());
+                        txtMiPerfilD.setText(usuario.toString());
+                    }
+                    if (newEntrega.isEmpty()){
+                        usuario.setEntrega(usuario.getEntrega());
+                    } else {
+                        usuario.setEntrega(newEntrega);
+                        JOptionPane.showMessageDialog(null, "Su ubicacion  ENTREGA se a cambiado con exito");
+                        lblEntregaUBI.setText(usuario.getEntrega());
+                        txtMiPerfilD.setText(usuario.toString());
+                    }
+
+                }
+                txtNewUbiRecep.setText("");
+                txtnewUbiEntrega.setText("");
+
+            }
+        });
+        REGRESARButton11.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tbtActualizar.remove(jpUbicaciones);
+                tbtActualizar.add("MENU PRINCIPAL", jpMenuPrincipa);
+            }
+        });
+        ubicacionesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tbtActualizar.remove(jpMenuPrincipa);
+                tbtActualizar.add("UBICACIONES", jpUbicaciones);
+            }
+        });
+        actualizarButton1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String status = cboStatusSeco.getSelectedItem().toString();
+                String cedula = cboVeriPedi.getSelectedItem().toString();
+                int orden = Integer.parseInt(cboOrden.getSelectedItem().toString());
+                ordenSeco.buscarOrdenSECO(cedula, orden).setStatus(status);
+            }
+        });
+        actualizarButton2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String status = cboStatusTint.getSelectedItem().toString();
+                String cedula = cboVeriPedi.getSelectedItem().toString();
+                int orden = Integer.parseInt(cboOrden.getSelectedItem().toString());
+                ordenerTNT.buscarOrden(cedula, orden).setStatus(status);
+            }
+        });
+        actualizarButton3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String status = cboStatusArr.getSelectedItem().toString();
+                String cedula = cboVeriPedi.getSelectedItem().toString();
+                int orden = Integer.parseInt(cboOrden.getSelectedItem().toString());
+                ordenesArgg.buscarOrden(cedula, orden).setStatus(status);
+            }
+        });
+        btnCall.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null,"LLAMA AL SIGUIENTE NUMERO \n 0999567465");
+            }
+        });
+        LLAMARAFASTCLEANINGButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null,"LLAMA AL SIGUIENTE NUMERO \n 0999567465");
+            }
+        });
     }
     
     public void esAgua (){
@@ -2271,39 +2444,11 @@ public class Ventana {
         }
 
     public static void main(String[] args) {
-        Grafo grafoResenas = new Grafo();
         JFrame frame = new JFrame("Ventana");
         frame.setContentPane(new Ventana().principal);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // frame.pack();
         frame.setSize(600,800);
-        ListaResenas listaResenas = new ListaResenas();
-
-        Resena resena1 = new Resena(4, "Buena película");
-        listaResenas.agregarResena(resena1);
-        grafoResenas.agregarResena(resena1); //agrega la resena al grafo
-
-        // Mensaje Resena agregada al usuario.
-        if (grafoResenas.size() <= 1) {
-            // Salir del metodo agregar si solo hay una resena
-            return;
-        }
-        else{
-            for (Resena item : listaResenas.getListaResenas()) {
-                grafoResenas.agregarConexion(resena1, item);
-            }
-        }
-
-        // Tab de consulta
-        List<Resena> resenasOrdenadas = grafoResenas.consultarResenasOrdenadas();
-
-        // Presentar la lista.
-        StringBuilder sb = new StringBuilder();
-        for (Resena item : resenasOrdenadas) {
-            sb.append(item.toString());
-            sb.append("\n");
-        }
-       // txtResenas.setText(sb.toString());
         frame.setVisible(true);
     }
 }

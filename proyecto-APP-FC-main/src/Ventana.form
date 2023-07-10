@@ -526,7 +526,187 @@
               </component>
             </children>
           </grid>
-          <grid id="471e3" binding="jpVerStatus" layout-manager="GridLayoutManager" row-count="4" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="5cc53" binding="jpReseñas" layout-manager="GridLayoutManager" row-count="7" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <tabbedpane title="AÑADIR RESEÑAS"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="87b73" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="PUNTUA NUESTRO SERVICIO Y DEJA UN COMENTARIO!"/>
+                </properties>
+              </component>
+              <vspacer id="30ed5">
+                <constraints>
+                  <grid row="6" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <component id="85d7b" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="NOS AYUDARA A MEJORAR PARA TI!"/>
+                </properties>
+              </component>
+              <component id="3a231" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Selecciona la puntuacion del 1-5:"/>
+                </properties>
+              </component>
+              <component id="a9c66" class="javax.swing.JSpinner" binding="spEstrella">
+                <constraints>
+                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="5c024" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Ingresa tu comentario:"/>
+                </properties>
+              </component>
+              <component id="92fff" class="javax.swing.JTextField" binding="txtComentario">
+                <constraints>
+                  <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="9a0b" class="javax.swing.JButton" binding="REGISTRARRESEÑAButton" default-binding="true">
+                <constraints>
+                  <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="REGISTRAR RESEÑA"/>
+                </properties>
+              </component>
+              <component id="40db9" class="javax.swing.JButton" binding="REGRESARButton10" default-binding="true">
+                <constraints>
+                  <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="REGRESAR"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="73f9e" binding="jpUbicaciones" layout-manager="GridLayoutManager" row-count="8" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <tabbedpane title="UBICACIONES"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="6012b" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="UBICACIONES REGISTRADAS:"/>
+                </properties>
+              </component>
+              <vspacer id="8ed5">
+                <constraints>
+                  <grid row="7" column="0" row-span="1" col-span="3" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <component id="b9fcb" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="ENTREGA:"/>
+                </properties>
+              </component>
+              <component id="a297a" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="RECEPCION:"/>
+                </properties>
+              </component>
+              <component id="e2c6e" class="javax.swing.JLabel" binding="lblRecepcionUBI">
+                <constraints>
+                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="*RECEPCION*"/>
+                </properties>
+              </component>
+              <component id="2e6df" class="javax.swing.JLabel" binding="lblEntregaUBI">
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="*ENTREGA*"/>
+                </properties>
+              </component>
+              <component id="83fc9" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Ingrese nueva ubicacion de entrega:"/>
+                </properties>
+              </component>
+              <component id="2836e" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Ingrese nueva ubicacion de recepcion:"/>
+                </properties>
+              </component>
+              <component id="63512" class="javax.swing.JTextField" binding="txtnewUbiEntrega">
+                <constraints>
+                  <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="49982" class="javax.swing.JTextField" binding="txtNewUbiRecep">
+                <constraints>
+                  <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="52e1b" class="javax.swing.JButton" binding="ACTUALIZARButton" default-binding="true">
+                <constraints>
+                  <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="ACTUALIZAR"/>
+                </properties>
+              </component>
+              <component id="8f7ef" class="javax.swing.JButton" binding="REGRESARButton11" default-binding="true">
+                <constraints>
+                  <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="REGRESAR"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="471e3" binding="jpVerStatus" layout-manager="GridLayoutManager" row-count="6" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <tabbedpane title="STATUS PEDIDO"/>
@@ -544,7 +724,7 @@
               </component>
               <component id="b4e25" class="javax.swing.JTextArea" binding="txtStatus">
                 <constraints>
-                  <grid row="2" column="0" row-span="2" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                  <grid row="4" column="0" row-span="2" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="50"/>
                   </grid>
                 </constraints>
@@ -552,7 +732,7 @@
               </component>
               <component id="e9c60" class="javax.swing.JButton" binding="buscarOrdenesButton" default-binding="true">
                 <constraints>
-                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <text value="Buscar Ordenes"/>
@@ -560,7 +740,7 @@
               </component>
               <component id="f4295" class="javax.swing.JButton" binding="siguienteOrdenButton" default-binding="true">
                 <constraints>
-                  <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <text value="Siguiente Orden"/>
@@ -580,6 +760,27 @@
                 </constraints>
                 <properties>
                   <text value="REGRESAR"/>
+                </properties>
+              </component>
+              <component id="7e158" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="seleccione el tipo de orden:"/>
+                </properties>
+              </component>
+              <component id="eac32" class="javax.swing.JComboBox" binding="cboOrdenStatus">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <model>
+                    <item value="Lavado en agua"/>
+                    <item value="Lavado en seco"/>
+                    <item value="Tinturado"/>
+                    <item value="Arreglo"/>
+                  </model>
                 </properties>
               </component>
             </children>
@@ -1461,7 +1662,7 @@
                       </component>
                     </children>
                   </grid>
-                  <grid id="a6e91" layout-manager="GridLayoutManager" row-count="8" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                  <grid id="a6e91" layout-manager="GridLayoutManager" row-count="9" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints>
                       <tabbedpane title="LAVADO SECO"/>
@@ -1565,9 +1766,37 @@
                           <text value="CANCELAR ORDEN"/>
                         </properties>
                       </component>
+                      <component id="1d125" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Actualizar Status de la orden"/>
+                        </properties>
+                      </component>
+                      <component id="1101b" class="javax.swing.JComboBox" binding="cboStatusSeco">
+                        <constraints>
+                          <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <model>
+                            <item value="Recogido"/>
+                            <item value="En proceso"/>
+                            <item value="Enviado"/>
+                          </model>
+                        </properties>
+                      </component>
+                      <component id="7c90c" class="javax.swing.JButton" binding="actualizarButton1" default-binding="true">
+                        <constraints>
+                          <grid row="8" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Actualizar"/>
+                        </properties>
+                      </component>
                     </children>
                   </grid>
-                  <grid id="fec82" binding="jpTinturados" layout-manager="GridLayoutManager" row-count="8" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                  <grid id="fec82" binding="jpTinturados" layout-manager="GridLayoutManager" row-count="9" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints>
                       <tabbedpane title="TINTURADOS"/>
@@ -1671,9 +1900,37 @@
                           <text value="CANCELAR ORDEN"/>
                         </properties>
                       </component>
+                      <component id="2e4a3" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Actualizar Status de la orden:"/>
+                        </properties>
+                      </component>
+                      <component id="5b67" class="javax.swing.JComboBox" binding="cboStatusTint">
+                        <constraints>
+                          <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <model>
+                            <item value="Recogido"/>
+                            <item value="En proceso"/>
+                            <item value="Enviado"/>
+                          </model>
+                        </properties>
+                      </component>
+                      <component id="6b0b0" class="javax.swing.JButton" binding="actualizarButton2" default-binding="true">
+                        <constraints>
+                          <grid row="8" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Actualizar"/>
+                        </properties>
+                      </component>
                     </children>
                   </grid>
-                  <grid id="da878" binding="jpArreglos" layout-manager="GridLayoutManager" row-count="7" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                  <grid id="da878" binding="jpArreglos" layout-manager="GridLayoutManager" row-count="8" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints>
                       <tabbedpane title="ARREGLOS"/>
@@ -1769,13 +2026,41 @@
                           <text value="CANCELAR ORDEN"/>
                         </properties>
                       </component>
+                      <component id="466c9" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Actualizar Status de la orden:"/>
+                        </properties>
+                      </component>
+                      <component id="c2180" class="javax.swing.JComboBox" binding="cboStatusArr">
+                        <constraints>
+                          <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <model>
+                            <item value="Recogido"/>
+                            <item value="En proceso"/>
+                            <item value="Enviado"/>
+                          </model>
+                        </properties>
+                      </component>
+                      <component id="24eb8" class="javax.swing.JButton" binding="actualizarButton3" default-binding="true">
+                        <constraints>
+                          <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Actualizar"/>
+                        </properties>
+                      </component>
                     </children>
                   </grid>
                 </children>
               </tabbedpane>
             </children>
           </grid>
-          <grid id="a8ea0" binding="jpMenuAdmin" layout-manager="GridLayoutManager" row-count="10" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="a8ea0" binding="jpMenuAdmin" layout-manager="GridLayoutManager" row-count="11" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <tabbedpane title="MENU ADMIN"/>
@@ -1793,7 +2078,7 @@
               </component>
               <vspacer id="709dc">
                 <constraints>
-                  <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                  <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                 </constraints>
               </vspacer>
               <component id="2b485" class="javax.swing.JButton" binding="ELIMINARCLIENTESButton" default-binding="true">
@@ -1854,10 +2139,18 @@
               </component>
               <component id="992f3" class="javax.swing.JButton" binding="SOPORTEAPPButton" default-binding="true">
                 <constraints>
-                  <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <text value="SOPORTE APP"/>
+                </properties>
+              </component>
+              <component id="1739b" class="javax.swing.JButton" binding="VERRESEÑASButton1" default-binding="true">
+                <constraints>
+                  <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="VER RESEÑAS"/>
                 </properties>
               </component>
             </children>
@@ -2340,7 +2633,7 @@
               </component>
             </children>
           </grid>
-          <grid id="b782" binding="jpMenuPrincipa" layout-manager="GridLayoutManager" row-count="8" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="b782" binding="jpMenuPrincipa" layout-manager="GridLayoutManager" row-count="9" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <tabbedpane title="MENU PRINCIPAL"/>
@@ -2358,7 +2651,7 @@
               </component>
               <vspacer id="760e5">
                 <constraints>
-                  <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                  <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                 </constraints>
               </vspacer>
               <component id="24922" class="javax.swing.JButton" binding="btnSoliServi">
@@ -2387,7 +2680,7 @@
               </component>
               <component id="a90bb" class="javax.swing.JButton" binding="btnHelp">
                 <constraints>
-                  <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <text value="Contactar Ayuda"/>
@@ -2395,7 +2688,7 @@
               </component>
               <component id="fed40" class="javax.swing.JButton" binding="btnCalificarServi">
                 <constraints>
-                  <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <text value="Califica Nuestro Servicio"/>
@@ -2407,6 +2700,14 @@
                 </constraints>
                 <properties>
                   <text value="Mi Perfil"/>
+                </properties>
+              </component>
+              <component id="636cc" class="javax.swing.JButton" binding="ubicacionesButton" default-binding="true">
+                <constraints>
+                  <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Ubicaciones"/>
                 </properties>
               </component>
             </children>
@@ -3754,34 +4055,46 @@
               </component>
             </children>
           </grid>
-          <grid id="320f4" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="320f4" binding="jpVerReseña" layout-manager="GridLayoutManager" row-count="4" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
-              <tabbedpane title="Reseñas"/>
+              <tabbedpane title="VER RESEÑAS"/>
             </constraints>
             <properties/>
             <border type="none"/>
             <children>
-              <tabbedpane id="ea8db" binding="tabbedPane1" default-binding="true">
+              <component id="3029e" class="javax.swing.JLabel">
                 <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                    <preferred-size width="200" height="200"/>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="SE MOSTRARARN TODAS LAS RESEÑAS "/>
+                </properties>
+              </component>
+              <component id="ebf9e" class="javax.swing.JButton" binding="VERRESEÑASButton" default-binding="true">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="VER RESEÑAS"/>
+                </properties>
+              </component>
+              <component id="82d79" class="javax.swing.JTextArea" binding="txtVerReseña">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="50"/>
                   </grid>
                 </constraints>
                 <properties/>
-                <border type="none"/>
-                <children>
-                  <grid id="4f56" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-                    <margin top="0" left="0" bottom="0" right="0"/>
-                    <constraints>
-                      <tabbedpane title=""/>
-                    </constraints>
-                    <properties/>
-                    <border type="none"/>
-                    <children/>
-                  </grid>
-                </children>
-              </tabbedpane>
+              </component>
+              <component id="54fef" class="javax.swing.JButton" binding="REGRESARButton9" default-binding="true">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="REGRESAR"/>
+                </properties>
+              </component>
             </children>
           </grid>
         </children>
