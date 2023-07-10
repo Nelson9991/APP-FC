@@ -359,6 +359,7 @@ public class Ventana {
     private JButton actualizarButton2;
     private JComboBox cboStatusArr;
     private JButton actualizarButton3;
+    private JComboBox cboOrdenStatus;
     private JTabbedPane tabbedPane2;
     private JLabel lblCedulaCancelarOrden;
     private JCheckBox ckMISMO;
@@ -1706,60 +1707,58 @@ public class Ventana {
             }
         });
 
-        buscarOrdenesButton.addActionListener(new
-                                                      ActionListener() {
+        buscarOrdenesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(ordenes.tamano()>0){
-                    String cedula = lblStatuCI.getText();
-                    numOrden = 1;
-                    Orden status = ordenes.buscarOrden(cedula, numOrden);
-                    String ver = status.toStringStatus();
-                    txtStatus.setText(ver);
-                }else if(ordenSeco.tamano()>0){
-                    String cedula = lblStatuCI.getText();
-                    numOrden = 1;
-                    Orden status = ordenSeco.buscarOrdenSECO(cedula, numOrden);
-                    String ver = status.toStringStatus();
-                    txtStatus.setText(ver);
-                }else if (ordenerTNT.tamano()>0){
-                    String cedula = lblStatuCI.getText();
-                    numOrden = 1;
-                    OrdenTint status = ordenerTNT.buscarOrden(cedula, numOrden);
-                    String ver = status.toStringStatus();
-                    txtStatus.setText(ver);
-                }else if(ordenesArgg.tamano()>0){
-                    String cedula = lblStatuCI.getText();
-                    numOrden = 1;
-                    OrdenArreglo status = ordenesArgg.buscarOrden(cedula, numOrden);
-                    String ver = status.toStringStatus();
-                    txtStatus.setText(ver);
-                }else JOptionPane.showMessageDialog(null,"No ha solicitado ningun servicio");
+                numOrden=1;
+                if(cboOrdenStatus.getSelectedItem().toString().compareToIgnoreCase("Lavado en agua")==0){
+                    if(ordenes.tamano()!=0){
+                        Orden orden = ordenes.buscarOrden(lblStatuCI.getText(), numOrden);
+                        txtStatus.setText(orden.toStringStatus());
+                    }else JOptionPane.showMessageDialog(null, "No hay ordenes registradas");
+                }else if (cboOrdenStatus.getSelectedItem().toString().compareToIgnoreCase("Lavado en seco")==0){
+                    if(ordenSeco.tamano()!=0){
+                        Orden orden = ordenSeco.buscarOrdenSECO(lblStatuCI.getText(),numOrden);
+                        txtStatus.setText(orden.toStringStatus());
+                    }else JOptionPane.showMessageDialog(null, "No hay ordenes registradas");
+                }else if (cboOrdenStatus.getSelectedItem().toString().compareToIgnoreCase("Tinturado")==0){
+                    if(ordenerTNT.tamano()!=0){
+                        OrdenTint orden = ordenerTNT.buscarOrden(lblStatuCI.getText(), numOrden);
+                        txtStatus.setText(orden.toStringStatus());
+                    }else JOptionPane.showMessageDialog(null, "No hay ordenes registradas");
+                }else if (cboOrdenStatus.getSelectedItem().toString().compareToIgnoreCase("Arreglo")==0){
+                    if(ordenesArgg.tamano()!=0){
+                        OrdenArreglo orden = ordenesArgg.buscarOrden(lblStatuCI.getText(), numOrden);
+                        txtStatus.setText(orden.toStringStatus());
+                    }else JOptionPane.showMessageDialog(null, "No hay ordenes registradas");
+                }
             }
         });
         siguienteOrdenButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (numOrden<=ordenes.tamano()+1){
-                    String cedula = lblStatuCI.getText();
-                    numOrden=numOrden+1;
-                    txtStatus.setText(ordenes.buscarOrden(cedula, numOrden).toStringStatus());
-                }else if(numOrden<=ordenSeco.tamano()+1){
-                    String cedula = lblStatuCI.getText();
-                    numOrden=1;
-                    txtStatus.setText(ordenSeco.buscarOrdenSECO(cedula, numOrden).toStringStatus());
-                    numOrden=numOrden+1;
-                }else if(numOrden<=ordenerTNT.tamano()+1){
-                    String cedula = lblStatuCI.getText();
-                    numOrden=1;
-                    txtStatus.setText(ordenerTNT.buscarOrden(cedula, numOrden).toStringStatus());
-                    numOrden=numOrden+1;
-                }else if(numOrden<=ordenesArgg.tamano()+1){
-                    String cedula = lblStatuCI.getText();
-                    numOrden=1;
-                    txtStatus.setText(ordenesArgg.buscarOrden(cedula, numOrden).toString());
-                    numOrden=numOrden+1;
-                }else JOptionPane.showMessageDialog(null, "No existen más ordenes");
+                numOrden=numOrden+1;
+                if(cboOrdenStatus.getSelectedItem().toString().compareToIgnoreCase("Lavado en agua")==0){
+                    if(numOrden<=ordenes.tamano()){
+                        Orden orden = ordenes.buscarOrden(lblStatuCI.getText(), numOrden);
+                        txtStatus.setText(orden.toStringStatus());
+                    }else JOptionPane.showMessageDialog(null, "No hay más ordenes registradas");
+                }else if (cboOrdenStatus.getSelectedItem().toString().compareToIgnoreCase("Lavado en seco")==0){
+                    if(numOrden<=ordenSeco.tamano()){
+                        Orden orden = ordenSeco.buscarOrdenSECO(lblStatuCI.getText(),numOrden);
+                        txtStatus.setText(orden.toStringStatus());
+                    }else JOptionPane.showMessageDialog(null, "No hay más ordenes registradas");
+                }else if (cboOrdenStatus.getSelectedItem().toString().compareToIgnoreCase("Tinturado")==0){
+                    if(numOrden<=ordenerTNT.tamano()){
+                        OrdenTint orden = ordenerTNT.buscarOrden(lblStatuCI.getText(), numOrden);
+                        txtStatus.setText(orden.toStringStatus());
+                    }else JOptionPane.showMessageDialog(null, "No hay más ordenes registradas");
+                }else if (cboOrdenStatus.getSelectedItem().toString().compareToIgnoreCase("Arreglo")==0){
+                    if(numOrden<=ordenesArgg.tamano()){
+                        OrdenArreglo orden = ordenesArgg.buscarOrden(lblStatuCI.getText(), numOrden);
+                        txtStatus.setText(orden.toStringStatus());
+                    }else JOptionPane.showMessageDialog(null, "No hay más ordenes registradas");
+                }
             }
         });
         UDStatus.addActionListener(new ActionListener() {
