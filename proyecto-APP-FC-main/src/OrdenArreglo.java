@@ -3,6 +3,15 @@ public class OrdenArreglo {
     String prenda;
     String descripcion;
     int numOrden;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     String status;
 
     public OrdenArreglo(String cedula, String prenda, String descripcion, int numOrden, String status) {

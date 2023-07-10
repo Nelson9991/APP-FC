@@ -1,10 +1,14 @@
-import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class OrdenesLavado {
+public class OrdenesCanceladas {
     LinkedList<Orden> ordenes = new LinkedList<Orden>();
     public void add(Orden o){
         ordenes.add(o);
+    }
+
+    // add new order
+    public void add(String cedula, String lista, int aux, String status) {
+        ordenes.add(new Orden(cedula, lista, aux, status));
     }
     public void delete(Orden o){
         ordenes.remove(o);
@@ -29,16 +33,6 @@ public class OrdenesLavado {
         return listaOrdenes;
     }
 
-    // obtener ordenes por cedula
-    public LinkedList ordenespedidosPorCedula (String cedula) {
-        LinkedList<Integer> listaOrdenes = new LinkedList<>();
-        for (Orden b : ordenes){
-            if (b.getCedula().equalsIgnoreCase(cedula))
-             listaOrdenes.add(b.getAux());
-        }
-        return listaOrdenes;
-    }
-
     public LinkedList cedulasPedidos (){
         LinkedList<String> listaCedulas = new LinkedList<>();
         for (Orden a : ordenes) {
@@ -49,6 +43,6 @@ public class OrdenesLavado {
 
     @Override
     public String toString() {
-        return "\n Ordenes Lavado y Secado:\n" + ordenes;
+        return "\n Ordenes Lavado y Secado Canceladas:\n" + ordenes;
     }
 }

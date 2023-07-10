@@ -1,10 +1,7 @@
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
+import java.awt.event.*;
 import java.util.LinkedList;
 
 
@@ -167,7 +164,7 @@ public class Ventana {
     private JLabel lblTOTALSECO;
     private JSpinner spNumOrden;
     private JComboBox cboOrden;
-    private JTabbedPane tabbedPane1;
+    private JTabbedPane tabCanceladasAdmin;
     private JTextField txtNombrePrenda;
     private JTextField txtColor;
     private JButton btnPagarTint;
@@ -302,6 +299,41 @@ public class Ventana {
     private JTextField txtDireccionRA;
     private JButton txtRmAgua;
     private JButton txtRmSeco;
+    private JButton btnCancelarAgua;
+    private JButton btnCancelarSeco;
+    private JTextArea txtOCanceladas;
+    private JComboBox cbCeduCancel;
+    private JComboBox cbSelectOrdenCancelada;
+    private JButton btnCanceTritu;
+    private JButton btnCancelArr;
+    private JButton btnOrderCancelBuscar;
+    private JPanel JpOrderCancel;
+    private JLabel lblCedulaCancelarAgua;
+    private JLabel lblCedulaCancelarSeco;
+    private JLabel lblCedulaCancelarTint;
+    private JLabel lblCedulaCancelarArr;
+    private JLabel lblCedulaCancelarTodas;
+    private JButton REGRESARButton8;
+    private JPanel btnRegresarCanceladas;
+    private JButton btnBuscarCancelAgua;
+    private JTextArea txtBuscarCancelAgua;
+    private JButton btnCancelAguaClient;
+    private JComboBox cbOrderAguaClient;
+    private JButton btnCargarOrdenesClient;
+    private JComboBox cbOrderSecoClient;
+    private JComboBox cbOrderTntClient;
+    private JComboBox cbOrderArrgClient;
+    private JButton btnBuscarOrderSecoClient;
+    private JButton btnCancelarOrderSecoClient;
+    private JTextArea txtOrderSecoClient;
+    private JButton btnBuscarTntClient;
+    private JButton btnCancelarTntClient;
+    private JTextArea txtBuscarTntClient;
+    private JButton btnBuscarArrClient;
+    private JButton btnCancelarArrClient;
+    private JTextArea txtBuscarArrClient;
+    private JTabbedPane tabbedPane2;
+    private JLabel lblCedulaCancelarOrden;
     private JCheckBox ckMISMO;
     private JLabel lblFoto;
     private JList lstListar;
@@ -322,6 +354,7 @@ public class Ventana {
         tbtActualizar.remove(jpVerificarTrans);
         tbtActualizar.remove(jpMenuPrincipa);
         tbtActualizar.remove(jpMiPerfil);
+        tbtActualizar.remove(JpOrderCancel);
         tbtActualizar.remove(jpSoliServ);
         tbtActualizar.remove(jpServicios);
         tbtActualizar.remove(jpRegisUsu);
@@ -430,7 +463,10 @@ public class Ventana {
                     lblCedulaSeco.setText(cliente.getCedula());
                     lblCedulaAgua.setText(cliente.getCedula());
                     lblStatuCI.setText(cliente.getCedula());
-
+                    lblCedulaCancelarAgua.setText(cliente.getCedula());
+                    lblCedulaCancelarSeco.setText(cliente.getCedula());
+                    lblCedulaCancelarTint.setText(cliente.getCedula());
+                    lblCedulaCancelarArr.setText(cliente.getCedula());
                     tbtActualizar.remove(JpIniciarUsu);
                     tbtActualizar.remove(JpGestionar);
 
@@ -1723,55 +1759,340 @@ public class Ventana {
         txtRmSeco.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // Quitar producto de la lista
 
+                if (listaProd.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "No hay productos en la lista");
+                }else {
+                    listaProd.removeLast(); //solo añade el nuevo
+                }
+
+                txtproduSeco.setText(listaProd.toString());
+                //calculo valores Subtotal y Total
+                double SUBTOTAL;
+                double envio=1.5;
+                double TOTAL;
+                SUBTOTAL= listaProd.subtotalRecursi();
+                TOTAL=SUBTOTAL+envio;
+                lblSUBTSECO.setText(String.valueOf(SUBTOTAL));
+                lblEnviSECO.setText(String.valueOf(envio));
+                lblTOTALSECO.setText(String.valueOf(TOTAL));
             }
-        });
-        txtRmAgua.addComponentListener(new ComponentAdapter() {
         });
         txtRmAgua.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Quitar producto de la lista
 
-                if (listaProd.isEmpty()) {
+                if (productosAg.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "No hay productos en la lista");
                 }else {
-                    listaProd.removeLast(); //solo añade el nuevo
+                    productosAg.removeLast(); //solo añade el nuevo
                 }
 
-                txtproduSeco.setText(listaProd.toString());
+                txtProduAGG.setText(productosAg.toString());
                 //calculo valores Subtotal y Total
                 double SUBTOTAL;
                 double envio=1.5;
                 double TOTAL;
-                SUBTOTAL= listaProd.subtotalRecursi();
+                SUBTOTAL= productosAg.subtotalRecursi();
                 TOTAL=SUBTOTAL+envio;
-                lblSUBTSECO.setText(String.valueOf(SUBTOTAL));
-                lblEnviSECO.setText(String.valueOf(envio));
-                lblTOTALSECO.setText(String.valueOf(TOTAL));
+                lblSUBTOTAL.setText(String.valueOf(SUBTOTAL));
+                lblValEncio.setText(String.valueOf(envio));
+                lblTOTAL.setText(String.valueOf(TOTAL));
+                lblValEncio.setText(String.valueOf(envio));
+
             }
         });
-        txtRmSeco.addActionListener(new ActionListener() {
+        OrdenesCanceladas ordenesCanceladas = new OrdenesCanceladas();
+        btnCancelarAgua.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Quitar producto de la lista
+                String ced = (String) cboVeriPedi.getSelectedItem();
+                String numOrden = cboOrden.getSelectedItem().toString();
+                int aux = Integer.parseInt(numOrden);
+                Orden o = ordenes.buscarOrden(ced, aux); //busca la orden por cedula
+                if (o == null)
+                    return;
+                o.setStatus("Cancelada"); //cambia el status de la orden
+                ordenes.delete(o); //elimina la orden
+                ordenesCanceladas.add(o); //añade la orden a la lista de canceladas
+                JOptionPane.showMessageDialog(null, "Orden cancelada");
 
-                if (listaProd.isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "No hay productos en la lista");
-                }else {
-                    listaProd.removeLast(); //solo añade el nuevo
+                LinkedList cedulasPedidos = ordenes.cedulasPedidos();
+                DefaultComboBoxModel dcbo = new DefaultComboBoxModel();
+                for (Object elemento : cedulasPedidos) {
+                    dcbo.addElement(elemento); //para que se añada solo una vez la cedula del usuario
+                    // pero si se añade el numero de ordenes que tiene
                 }
+                cboVeriPedi.setModel(dcbo);
 
-                txtproduSeco.setText(listaProd.toString());
-                //calculo valores Subtotal y Total
-                double SUBTOTAL;
-                double envio=1.5;
-                double TOTAL;
-                SUBTOTAL= listaProd.subtotalRecursi();
-                TOTAL=SUBTOTAL+envio;
-                lblSUBTSECO.setText(String.valueOf(SUBTOTAL));
-                lblEnviSECO.setText(String.valueOf(envio));
-                lblTOTALSECO.setText(String.valueOf(TOTAL));
+                LinkedList numOrdenAux = ordenes.ordenespedidos();
+                DefaultComboBoxModel dcbo1 = new DefaultComboBoxModel<>();
+                for (Object elem : numOrdenAux) {
+                    dcbo1.addElement(elem);
+                }
+                cboOrden.setModel(dcbo1);
+            }
+        });
+        btnCancelarSeco.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String ced = (String) cboCEDSECO.getSelectedItem();
+                String numOrden = cboOrden.getSelectedItem().toString();
+                int aux = Integer.parseInt(numOrden);
+                Orden o = ordenSeco.buscarOrdenSECO(ced, aux); //busca la orden por cedula
+                if (o == null)
+                    return;
+                o.setStatus("Cancelada"); //cambia el status de la orden
+                ordenSeco.delete(o); //elimina la orden
+                ordenesCanceladas.add(o); //añade la orden a la lista de canceladas
+                JOptionPane.showMessageDialog(null, "Orden cancelada");
+
+                LinkedList cedulasPedidos = ordenSeco.cedulasSECO();
+                DefaultComboBoxModel dcbo10 = new DefaultComboBoxModel();
+                for (Object ordeSec:cedulasPedidos){
+                    dcbo10.addElement(ordeSec);
+                }
+                cboCEDSECO.setModel(dcbo10);
+                LinkedList numOrdenSec = ordenSeco.ordeneSECO();
+                DefaultComboBoxModel dcbo9 = new DefaultComboBoxModel<>();
+                for (Object elem:numOrdenSec){
+                    dcbo9.addElement(elem);
+                }
+                cboORDSECO.setModel(dcbo9);
+            }
+        });
+        btnCanceTritu.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String ced = (String) cboVeriPedi.getSelectedItem();
+                String numOrden = cboOrden.getSelectedItem().toString();
+                int aux = Integer.parseInt(numOrden);
+                OrdenTint o = ordenerTNT.buscarOrden(ced, aux); //busca la orden por cedula
+                if (o == null)
+                    return;
+                ordenerTNT.delete(o); //elimina la orden
+                ordenesCanceladas.add(o.cedula, o.toStringStatus(), o.getNumOrden(), o.getStatus()); //añade la orden a la lista de canceladas
+                JOptionPane.showMessageDialog(null, "Orden cancelada");
+
+                LinkedList cedulasPedTint = ordenerTNT.cedulasPedidos();
+                DefaultComboBoxModel dcb3 = new DefaultComboBoxModel();
+                for (Object elemento:cedulasPedTint){
+                    dcb3.addElement(elemento);
+                }
+                cboCedTNT.setModel(dcb3);
+
+                LinkedList numOrdenAux = ordenerTNT.ordenesPedidos();
+                DefaultComboBoxModel dcb4 = new DefaultComboBoxModel<>();
+                for (Object elem:numOrdenAux){
+                    dcb4.addElement(elem);
+                }
+                cboOrdTNT.setModel(dcb4);
+            }
+        });
+        btnCancelArr.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String ced = (String) cboVeriPedi.getSelectedItem();
+                String numOrden = cboOrden.getSelectedItem().toString();
+                int aux = Integer.parseInt(numOrden);
+                OrdenArreglo o = ordenesArgg.buscarOrden(ced, aux); //busca la orden por cedula
+                if (o == null)
+                    return;
+                ordenesArgg.delete(o); //elimina la orden
+                ordenesCanceladas.add(o.cedula, o.toStringStatus(), o.getNumOrden(), o.getStatus());
+                JOptionPane.showMessageDialog(null, "Orden cancelada");
+
+                LinkedList cedulasPedArregg = ordenesArgg.cedulasPedidos();
+                DefaultComboBoxModel cedulasPA = new DefaultComboBoxModel();
+                for (Object elemento : cedulasPedArregg) {
+                    cedulasPA.addElement(elemento);
+                }
+                cboCedArreglo.setModel(cedulasPA);
+
+                LinkedList numOrdenArg = ordenesArgg.ordenesPedidos();
+                DefaultComboBoxModel Norden = new DefaultComboBoxModel<>();
+                for (Object elem : numOrdenArg) {
+                    Norden.addElement(elem);
+                }
+                cboOrdenArregl.setModel(Norden);
+            }
+        });
+        btnModiServi.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tbtActualizar.remove(jpMenuPrincipa);
+                tbtActualizar.add("Cancelar Ordenes", JpOrderCancel);
+            }
+        });
+        btnBuscarCancelAgua.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String ced = lblCedulaAgua.getText();
+                String numOrden = cbOrderAguaClient.getSelectedItem().toString();
+                int aux = Integer.parseInt(numOrden);
+                Orden o = ordenes.buscarOrden(ced, aux); //busca la orden por cedula
+                txtBuscarCancelAgua.setText(o.toString());
+            }
+        });
+        btnCargarOrdenesClient.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                LinkedList numOrdenAux = ordenes.ordenespedidosPorCedula(lblCedulaAgua.getText());
+                DefaultComboBoxModel dcbo1 = new DefaultComboBoxModel<>();
+                for (Object elem : numOrdenAux) {
+                    dcbo1.addElement(elem);
+                }
+                cbOrderAguaClient.setModel(dcbo1);
+
+                LinkedList numOrdenSec = ordenSeco.ordenespedidosPorCedula(lblCedulaAgua.getText());
+                DefaultComboBoxModel dcbo9 = new DefaultComboBoxModel<>();
+                for (Object elem:numOrdenSec){
+                    dcbo9.addElement(elem);
+                }
+                cbOrderSecoClient.setModel(dcbo9);
+
+                LinkedList numOrdenAuxTnt = ordenerTNT.ordenespedidosPorCedula(lblCedulaAgua.getText());
+                DefaultComboBoxModel dcb4 = new DefaultComboBoxModel<>();
+                for (Object elem:numOrdenAuxTnt){
+                    dcb4.addElement(elem);
+                }
+                cbOrderTntClient.setModel(dcb4);
+
+                LinkedList numOrdenArg = ordenesArgg.ordenespedidosPorCedula(lblCedulaAgua.getText());
+                DefaultComboBoxModel Norden = new DefaultComboBoxModel<>();
+                for (Object elem : numOrdenArg) {
+                    Norden.addElement(elem);
+                }
+                cbOrderArrgClient.setModel(Norden);
+            }
+        });
+        OrdenesCanceladas ordenesCanceladasClient = new OrdenesCanceladas();
+        btnCancelAguaClient.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String ced = lblCedulaCancelarAgua.getText();
+                String numOrden = cbOrderAguaClient.getSelectedItem().toString();
+                int aux = Integer.parseInt(numOrden);
+                Orden o = ordenes.buscarOrden(ced, aux); //busca la orden por cedula
+                if (o == null)
+                    return;
+                o.setStatus("Cancelada"); //cambia el status de la orden
+                ordenes.delete(o); //elimina la orden
+                ordenesCanceladasClient.add(o); //añade la orden a la lista de canceladas
+                JOptionPane.showMessageDialog(null, "Orden cancelada");
+
+                LinkedList numOrdenAux = ordenes.ordenespedidosPorCedula(lblCedulaAgua.getText());
+                DefaultComboBoxModel dcbo1 = new DefaultComboBoxModel<>();
+                for (Object elem : numOrdenAux) {
+                    dcbo1.addElement(elem);
+                }
+                cbOrderAguaClient.setModel(dcbo1);
+            }
+        });
+        btnBuscarOrderSecoClient.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String ced = lblCedulaAgua.getText();
+                String numOrden = cbOrderSecoClient.getSelectedItem().toString();
+                int aux = Integer.parseInt(numOrden);
+                Orden o = ordenSeco.buscarOrdenSECO(ced, aux);
+                txtOrderSecoClient.setText(o.toString());
+            }
+        });
+        btnCancelarOrderSecoClient.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String ced = lblCedulaCancelarAgua.getText();
+                String numOrden = cbOrderSecoClient.getSelectedItem().toString();
+                int aux = Integer.parseInt(numOrden);
+                Orden o = ordenSeco.buscarOrdenSECO(ced, aux);
+                if (o == null)
+                    return;
+                o.setStatus("Cancelada"); //cambia el status de la orden
+                ordenSeco.delete(o); //elimina la orden
+                ordenesCanceladasClient.add(o); //añade la orden a la lista de canceladas
+                JOptionPane.showMessageDialog(null, "Orden cancelada");
+
+                LinkedList numOrdenSec = ordenSeco.ordenespedidosPorCedula(lblCedulaAgua.getText());
+                DefaultComboBoxModel dcbo9 = new DefaultComboBoxModel<>();
+                for (Object elem:numOrdenSec){
+                    dcbo9.addElement(elem);
+                }
+                cbOrderSecoClient.setModel(dcbo9);
+
+            }
+        });
+        btnBuscarTntClient.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String ced = lblCedulaAgua.getText();
+                String numOrden = cbOrderTntClient.getSelectedItem().toString();
+                int aux = Integer.parseInt(numOrden);
+                OrdenTint o = ordenerTNT.buscarOrden(ced, aux); //busca la orden por cedula
+                txtBuscarTntClient.setText(o.toString());
+            }
+        });
+        btnCancelarTntClient.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String ced = lblCedulaCancelarAgua.getText();
+                String numOrden = cbOrderTntClient.getSelectedItem().toString();
+                int aux = Integer.parseInt(numOrden);
+                OrdenTint o = ordenerTNT.buscarOrden(ced, aux); //busca la orden por cedula
+                if (o == null)
+                    return;
+                o.setStatus("Cancelada"); //cambia el status de la orden
+                ordenerTNT.delete(o); //elimina la orden
+                ordenesCanceladasClient.add(o.cedula, o.toStringStatus(), o.numOrden, o.status); //añade la orden a la lista de canceladas
+                JOptionPane.showMessageDialog(null, "Orden cancelada");
+
+                LinkedList numOrdenAuxTnt = ordenerTNT.ordenespedidosPorCedula(lblCedulaAgua.getText());
+                DefaultComboBoxModel dcb4 = new DefaultComboBoxModel<>();
+                for (Object elem:numOrdenAuxTnt){
+                    dcb4.addElement(elem);
+                }
+                cbOrderTntClient.setModel(dcb4);
+            }
+        });
+        btnBuscarArrClient.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String ced = lblCedulaAgua.getText();
+                String numOrden = cbOrderArrgClient.getSelectedItem().toString();
+                int aux = Integer.parseInt(numOrden);
+                OrdenArreglo o = ordenesArgg.buscarOrden(ced, aux); //busca la orden por cedula
+                txtBuscarArrClient.setText(o.toString());
+            }
+        });
+        btnCancelarArrClient.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String ced = lblCedulaCancelarAgua.getText();
+                String numOrden = cbOrderArrgClient.getSelectedItem().toString();
+                int aux = Integer.parseInt(numOrden);
+                OrdenArreglo o = ordenesArgg.buscarOrden(ced, aux); //busca la orden por cedula
+                if (o == null)
+                    return;
+                o.setStatus("Cancelada"); //cambia el status de la orden
+                ordenesArgg.delete(o); //elimina la orden
+                ordenesCanceladasClient.add(o.cedula, o.toStringStatus(), o.numOrden, o.status); //añade la orden a la lista de canceladas
+                JOptionPane.showMessageDialog(null, "Orden cancelada");
+
+                LinkedList numOrdenArg = ordenesArgg.ordenespedidosPorCedula(lblCedulaAgua.getText());
+                DefaultComboBoxModel Norden = new DefaultComboBoxModel<>();
+                for (Object elem : numOrdenArg) {
+                    Norden.addElement(elem);
+                }
+                cbOrderArrgClient.setModel(Norden);
+            }
+        });
+        REGRESARButton8.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tbtActualizar.remove(JpOrderCancel);
+                tbtActualizar.add("MENU PRINCIPAL", jpMenuPrincipa);
             }
         });
     }
@@ -1844,7 +2165,6 @@ public class Ventana {
                 tbtActualizar.add("MENU PRINCIPAL", jpMenuPrincipa);
                 txtproduSeco.setText("");
             }
-
     }
     public void esTinturado(){
         String ced= lblCedulaTinturado.getText();

@@ -36,6 +36,15 @@ public class OrdenesLavSeco {
         return listaCedulas;
     }
 
+    public LinkedList ordenespedidosPorCedula (String cedula) {
+        LinkedList<Integer> listaOrdenes = new LinkedList<>();
+        for (Orden b : ordenes){
+            if (b.getCedula().equalsIgnoreCase(cedula))
+                listaOrdenes.add(b.getAux());
+        }
+        return listaOrdenes;
+    }
+
     @Override
     public String toString() {
         return "Ordenes al seco:\n " + ordenes ;

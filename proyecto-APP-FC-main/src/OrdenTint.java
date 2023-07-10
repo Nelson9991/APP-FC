@@ -3,6 +3,15 @@ public class OrdenTint {
     String prenda;
     String color;
     int numOrden;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     String status;
 
     public OrdenTint(String cedula, String prenda, String color, int numOrden, String status) {

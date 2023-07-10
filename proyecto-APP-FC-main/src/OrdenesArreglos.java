@@ -28,6 +28,17 @@ public class OrdenesArreglos {
         }
         return listaOrdenes;
     }
+
+    public LinkedList ordenespedidosPorCedula (String cedula) {
+        LinkedList<Integer> listaOrdenes = new LinkedList<>();
+        for (OrdenArreglo b : ordenArreg){
+            listaOrdenes.add(b.getNumOrden());
+            if (b.getCedula().equalsIgnoreCase(cedula))
+                listaOrdenes.add(b.getNumOrden());
+        }
+        return listaOrdenes;
+    }
+
     public LinkedList cedulasPedidos (){
         LinkedList<String> listaCedulas = new LinkedList<>();
         for (OrdenArreglo x : ordenArreg) {
