@@ -17,6 +17,6 @@ public class Resena {
 
     @Override
     public String toString() {
-        return "Resena{" + "valor=" + valor + ", descripcion=" + descripcion + '}';
+        return "\n\nResena:\n" + "Valoracion:\t" + valor + "\nComentario:\t" + descripcion;
     }
 }
