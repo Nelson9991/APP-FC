@@ -332,6 +332,7 @@ public class Ventana {
     private JButton btnBuscarArrClient;
     private JButton btnCancelarArrClient;
     private JTextArea txtBuscarArrClient;
+    private JTabbedPane tabbedPane1;
     private JTabbedPane tabbedPane2;
     private JLabel lblCedulaCancelarOrden;
     private JCheckBox ckMISMO;
