@@ -7,6 +7,11 @@ public class Grafo {
         grafo = new HashMap<>();
     }
 
+    // Comprobar size del grafo
+    public int size() {
+        return grafo.size();
+    }
+
     public void agregarResena(Resena resena) {
         grafo.put(resena, new ArrayList<>());
     }

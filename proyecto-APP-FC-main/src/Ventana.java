@@ -3,6 +3,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.event.*;
 import java.util.LinkedList;
+import java.util.List;
 
 
 public class Ventana {
@@ -2270,12 +2271,39 @@ public class Ventana {
         }
 
     public static void main(String[] args) {
+        Grafo grafoResenas = new Grafo();
         JFrame frame = new JFrame("Ventana");
         frame.setContentPane(new Ventana().principal);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // frame.pack();
         frame.setSize(600,800);
+        ListaResenas listaResenas = new ListaResenas();
 
+        Resena resena1 = new Resena(4, "Buena película");
+        listaResenas.agregarResena(resena1);
+        grafoResenas.agregarResena(resena1); //agrega la resena al grafo
+
+        // Mensaje Resena agregada al usuario.
+        if (grafoResenas.size() <= 1) {
+            // Salir del metodo agregar si solo hay una resena
+            return;
+        }
+        else{
+            for (Resena item : listaResenas.getListaResenas()) {
+                grafoResenas.agregarConexion(resena1, item);
+            }
+        }
+
+        // Tab de consulta
+        List<Resena> resenasOrdenadas = grafoResenas.consultarResenasOrdenadas();
+
+        // Presentar la lista.
+        StringBuilder sb = new StringBuilder();
+        for (Resena item : resenasOrdenadas) {
+            sb.append(item.toString());
+            sb.append("\n");
+        }
+       // txtResenas.setText(sb.toString());
         frame.setVisible(true);
     }
 }

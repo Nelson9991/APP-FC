@@ -14,4 +14,9 @@ public class Resena {
     public String getDescripcion() {
         return descripcion;
     }
+
+    @Override
+    public String toString() {
+        return "Resena{" + "valor=" + valor + ", descripcion=" + descripcion + '}';
+    }
 }
